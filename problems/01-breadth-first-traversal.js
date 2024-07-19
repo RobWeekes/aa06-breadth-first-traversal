@@ -13,18 +13,37 @@ const adjList = {
 }
 
 function printBreadthFirst(start) {
-  // Your code here 
+    // step 2 - create a set to store visited nodes
+    const visited = new Set();
+    visited.add(start);
+    // step 1 - create a queue for breadth first traversal
+    let q = [start];
+
+    // while there are nodes in the queue...
+    while(q.length) {
+        // step 3 - shift off the first node
+        let node = q.shift();
+        // DO THE THING
+        console.log(node);
+        // Add neighbors to the queue using adjacency list variable /\
+        for(let neighbor of adjList[node]) {  // [node] keys into the node we're on, w/ values = neighbor nodes
+            if(!visited.has(neighbor)) {    // if we haven't visited the next node yet,
+                visited.add(neighbor);        // add it to the visited set
+                q.push(neighbor);       // and push it into the queue to be visited next
+            }
+        }
+    }
 }
 
-// console.log("First Test:")
-// printBreadthFirst(3); // Prints 1 through 6 in Breadth-first order, starting with 3
-//                       // One possible solution:  3, 2, 4, 1, 5, 6
-// console.log("Second Test:")
-// printBreadthFirst(6); // Prints 1 through 6 in Breadth-first order, starting with 6
-//                       // One possible solution:  6, 4, 3, 5, 2, 1
-// console.log("Third Test:")
-// printBreadthFirst(4); // Prints 1 through 6 in Breadth-first order, starting with 4
-//                       // One possible solution:  4, 3, 5, 6, 2, 1
+console.log("First Test:")
+printBreadthFirst(3); // Prints 1 through 6 in Breadth-first order, starting with 3
+                      // One possible solution:  3, 2, 4, 1, 5, 6
+console.log("Second Test:")
+printBreadthFirst(6); // Prints 1 through 6 in Breadth-first order, starting with 6
+                      // One possible solution:  6, 4, 3, 5, 2, 1
+console.log("Third Test:")
+printBreadthFirst(4); // Prints 1 through 6 in Breadth-first order, starting with 4
+                      // One possible solution:  4, 3, 5, 6, 2, 1
 
 
 /******************** DO NOT MODIFY ANY CODE BELOW THIS LINE *****************/
